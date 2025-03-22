@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird Clone</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: linear-gradient(to bottom, #4facfe, #00f2fe); overflow: hidden; transition: background 1s ease-in-out; }
+        canvas { background: url('https://i.pinimg.com/564x/b2/b0/84/b2b084ad6061dfe2122302266ea8af58.jpg') repeat-x; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); animation: glow 3s infinite alternate; }
+        @keyframes glow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.2); }
+        }
+        #deathScreen {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease-in-out;
+        }
+        #pauseButton {
+            display: block;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+        }
+        button:hover {
+            background: #ffdb4d;
+            transform: scale(1.1);
+            box-shadow: 0 5px 10px rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <button id="pauseButton" onclick="togglePause()">Pause</button>
+    <div id="deathScreen">
+        <h2>Game Over</h2>
+        <p>Score: <span id="finalScore">0</span></p>
+        <button onclick="restartGame()">Restart</button>
+    </div>
+    <script>
+                const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const deathScreen = document.getElementById("deathScreen");
+        const finalScore = document.getElementById("finalScore");
+        const pauseButton = document.getElementById("pauseButton");
+        canvas.width = 320;
+        canvas.height = 480;
+
+        let birdImg = new Image();
+        birdImg.src = 'https://www.pngkey.com/png/full/183-1831572_flappy-bird-sprite-png.png';
+
+        let bird, pipes, score, gameRunning, paused, godMode = false, speedHack = false;
+        function resetGame() {
+            bird = { x: 50, y: 150, width: 34, height: 24, velocity: 0, gravity: 0.6, lift: -10, rotation: 0 };
+            pipes = [];
+            score = 0;
+            gameRunning = true;
+            paused = false;
+            deathScreen.style.display = "none";
+            gameLoop();
+        }
+        resetGame();
+
+        function drawBird() {
+            ctx.save();
+            ctx.translate(bird.x + bird.width / 2, bird.y + bird.height / 2);
+            ctx.rotate(bird.rotation * Math.PI / 180);
+            ctx.drawImage(birdImg, -bird.width / 2, -bird.height / 2, bird.width, bird.height);
+            ctx.restore();
+        }
+
+        function updateBird() {
+            if (!paused && !godMode) {
+                bird.velocity += bird.gravity;
+                bird.y += bird.velocity;
+                bird.rotation = Math.min(Math.max(bird.velocity * 3, -45), 45);
+                if (bird.y + bird.height >= canvas.height || bird.y <= 0) gameOver();
+            }
+        }
+
+        function createPipe() {
+            if (!paused) {
+                let gap = 200, topHeight = Math.random() * (canvas.height - gap - 140) + 30;
+                pipes.push({ x: canvas.width, top: topHeight, bottom: topHeight + gap, width: 50 });
+            }
+        }
+
+        function drawPipes() {
+            ctx.fillStyle = "limegreen";
+            pipes.forEach(pipe => {
+                ctx.fillRect(pipe.x, 0, pipe.width, pipe.top);
+                ctx.fillRect(pipe.x, pipe.bottom, pipe.width, canvas.height - pipe.bottom);
+            });
+        }
+
+        function updatePipes() {
+            if (!paused) {
+                pipes.forEach((pipe, i) => {
+                    pipe.x -= 2;
+                    if (pipe.x + pipe.width < 0) { pipes.splice(i, 1); score++; }
+                    if (bird.x < pipe.x + pipe.width && bird.x + bird.width > pipe.x && (bird.y < pipe.top || bird.y + bird.height > pipe.bottom)) gameOver();
+                });
+            }
+        }
+
+        function gameOver() {
+            gameRunning = false;
+            finalScore.textContent = score;
+            deathScreen.style.display = "block";
+        }
+
+        function drawScore() {
+            ctx.fillStyle = "white";
+            ctx.font = "20px Arial";
+            ctx.fillText("Score: " + score, 10, 30);
+        }
+
+        function gameLoop() {
+            if (!gameRunning) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            updateBird();
+            updatePipes();
+            drawBird();
+            drawPipes();
+            drawScore();
+            if (!paused) requestAnimationFrame(gameLoop);
+        }
+
+        function togglePause() {
+            paused = !paused;
+            pauseButton.textContent = paused ? "Resume" : "Pause";
+            if (!paused) gameLoop();
+        }
+
+        function restartGame() { resetGame(); }
+        setInterval(createPipe, 1500);
+        gameLoop();
+
+        function toggleGodMode() { godMode = !godMode; console.log("God Mode: ", godMode); }
+        function toggleSpeedHack() { speedHack = !speedHack; console.log("Speed Hack: ", speedHack); }
+
+        document.addEventListener("keydown", (e) => {
+            if (e.code === "Space" && !paused) {
+                bird.velocity = bird.lift;
+            } else if (e.code === "Escape") {
+                togglePause();
+            } else if (e.code === "KeyG") {
+                toggleGodMode();
+            } else if (e.code === "KeyF") {
+                toggleSpeedHack();
+            }
+        });
+
+        function restartGame() { resetGame(); }
+        setInterval(createPipe, 1500);
+        gameLoop();
+    </script>
+</body>
+</html>
