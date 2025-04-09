@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Custom themes for Bruce Firmware" />
+    <title>Bruce Firmware Themes</title>
+    <link rel="stylesheet" href="https://bruce.computer/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo">
+                    <img src="assets/img/bruce.png" alt="Bruce Logo">
+                </a>
+    
+                <button class="hamburger" id="hamburger-btn">☰</button>
+    
+                <div class="nav-links">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="https://github.com/pr3y/Bruce" target="_blank" class="nav-link">GitHub</a>
+                    <a href="flasher" class="btn-inst nav-link">Install</a>
+                    <a href="https://github.com/pr3y/Bruce/wiki" target="_blank" class="nav-link">Docs</a>
+                    <a href="boards" class="nav-link">Boards</a>
+                    <a href="themes" class="nav-link active">Themes</a>
+                    <a href="donate" class="nav-link">Donate</a>
+                </div>
+
+                <div class="mobile-nav" id="mobile-nav">
+                    <button class="close-btn" id="close-btn">✖</button>
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="https://github.com/pr3y/Bruce" target="_blank" class="nav-link">GitHub</a>
+                    <a href="flasher" class="btn-inst nav-link">Install</a>
+                    <a href="https://github.com/pr3y/Bruce/wiki" target="_blank" class="nav-link">Docs</a>
+                    <a href="boards" class="nav-link">Boards</a>
+                    <a href="themes" class="nav-link active">Themes</a>
+                    <a href="donate" class="nav-link">Donate</a>
+                </div> 
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero-container">
+        <div class="hero">
+            <div class="fade-overlay"></div>
+            <div class="hero-content">
+                <h1>Bruce Firmware Themes</h1>
+                <p>Download custom themes for your Bruce Firmware device.</p>
+                <div class="cta-buttons">
+                    <a href="#theme-gallery" class="btn">Browse Themes</a>
+                    <a href="https://discord.gg/WJ9XF9czVT" target="_blank" class="btn-install"><b>Join Discord</b></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="slideshow-container">
+            <div class="slide active">
+                <img src="assets/img/theme-cyberpunk.png" alt="Cyberpunk Theme">
+            </div>
+            <div class="slide">
+                <img src="assets/img/theme-dark.png" alt="Dark Theme">
+            </div>
+            <div class="slide">
+                <img src="assets/img/theme-hacker.png" alt="Hacker Theme">
+            </div>
+            <div class="slide">
+                <img src="assets/img/theme-synthwave.png" alt="Synthwave Theme">
+            </div>
+            <div class="dot-nav">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="features">
+            <h1>Theme Downloads</h1>
+            <p>Customize your Bruce Firmware experience with these downloadable themes.</p>
+            <div id="theme-gallery" class="boards-grid">
+              
+                
+                <!-- Dark Minimal Theme -->
+                <div class="board-card">
+                    <div class="board-image">
+                        <img src="assets/img/theme-dark.png" alt="Dark Minimal Theme">
+                    </div>
+                    <div class="board-content">
+                        <h2>Dark Minimal</h2>
+                        <p>A sleek, battery-efficient dark theme with minimal elements.</p>
+                        <div class="board-features">
+                            <span>Battery Friendly</span>
+                            <span>Clean Interface</span>
+                            <span>Reduced Elements</span>
+                        </div>
+                        <div class="board-actions">
+                            <a href="downloads/dark-minimal-theme.zip" class="btn">Download</a>
+                        </div>
+                    </div>
+                </div>
+                
+ 
+                
+         
+                
+                <!-- M5 Firmware Theme -->
+                <div class="board-card">
+                    <div class="board-image">
+                        <img src="assets/img/theme-m5.png" alt="M5 Firmware Theme">
+                    </div>
+                    <div class="board-content">
+                        <h2>M5 Firmware</h2>
+                        <p>Theme inspired by the original M5Stack UI design.</p>
+                        <div class="board-features">
+                            <span>Original Look</span>
+                            <span>M5 Inspired</span>
+                            <span>Clean Layout</span>
+                        </div>
+                        <div class="board-actions">
+                            <a href="downloads/m5-theme.zip" class="btn">Download</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="board-card">
+                    <div class="board-image">
+                        <img src="assets/img/theme-flip.png" alt="Flip Theme">
+                    </div>
+                    <div class="board-content">
+                        <h2>Flipper UI</h2>
+                        <p>Rotated interface designed for devices in flip orientation.</p>
+                        <div class="board-features">
+                            <span>Rotated Layout</span>
+                            <span>Flip Friendly</span>
+                            <span>EXAMPLE FEATURE</span>
+                        </div>
+                        <div class="board-actions">
+                            <a href="downloads/flipper-theme.zip" class="btn">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>Theme Installation</h2>
+        <p>To install a theme on your Bruce Firmware device:</p>
+        <ul>
+            <li>Download the theme ZIP file</li>
+            <li>Extract the files to your device's SD card in the /themes directory</li>
+            <li>Navigate to Settings > Display > Themes on your device</li>
+            <li>Select your new theme from the list</li>
+        </ul>
+        <p>For detailed instructions, check the <a href="https://github.com/pr3y/Bruce/wiki/Theme-Installation" target="_blank">installation guide</a>.</p>
+    </div>
+
+    <div class="news-container">
+        <div class="news">
+            <h1>Submit Your Own Theme</h1>
+            <div class="news-grid">
+                <div class="news-item">
+                    <h3>Join Our Discord</h3>
+                    <p>Want to submit your own theme? Join our Discord community and share your creation in the #themes channel.</p>
+                    <a href="https://discord.gg/WJ9XF9czVT" target="_blank" class="btn">Join Discord</a>
+                </div>
+                <div class="news-item">
+                    <h3>Theme Guidelines</h3>
+                    <p>Learn how to create compatible themes for Bruce Firmware devices.</p>
+                    <a href="https://github.com/pr3y/Bruce/wiki/Theme-Development" target="_blank" class="btn">View Guidelines</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="news-container">
+        <div class="faq-container">
+            <h2>Need help with themes?</h2>
+            <p>Ask in our <a href="https://discord.gg/WJ9XF9czVT" target="_blank" rel="noopener noreferrer"><b>Discord server</b></a> for assistance!</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-icons">
+                <a href="https://discord.gg/WJ9XF9czVT" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/img/discord.svg" alt="Discord">
+                </a>
+                <a href="https://youtube.com/@Bruce-fw" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/img/youtube.svg" alt="YouTube">
+                </a>
+                <a href="https://reddit.com/r/brucefw" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/img/reddit.svg" alt="Reddit">
+                </a>
+                <a href="https://www.instagram.com/bruce_firmware/" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/img/instagram.svg" alt="Instagram">
+                </a>
+                <a href="mailto:contact@bruce.computer">
+                    <img src="assets/img/email.svg" alt="Email">
+                </a>
+                <a href="https://matrix.to/#/#general:matrix.bruce.computer" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/img/matrix.svg" alt="Matrix">
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="scripts/slideshow.js"></script>
+    <script src="scripts/active.js"></script>
+</body>
+</html>
